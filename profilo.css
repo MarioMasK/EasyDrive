@@ -1,0 +1,105 @@
+:root {
+    --aqua-marine: #20B2AA;
+    --orange-easy: #FF8C00;
+    --black-easy: #1a1a1a;
+}
+
+/* Header Profilo */
+.profile-header {
+    background-color: white;
+    border-left: 6px solid var(--aqua-marine);
+}
+
+/* Avatar circolare con iniziali */
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--aqua-marine) 0%, var(--black-easy) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(32, 178, 170, 0.3);
+}
+
+/* Badge personalizzato */
+.bg-aqua-marine {
+    background-color: var(--aqua-marine);
+    color: white;
+    text-transform: capitalize;
+}
+
+.text-aqua-marine {
+    color: var(--aqua-marine) !important;
+}
+
+.text-orange-easy {
+    color: var(--orange-easy) !important;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.info-group label {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+}
+
+/* Box Assistenza */
+.assistance-box {
+    background-color: #f8f9fa;
+    border-color: #dee2e6 !important;
+}
+
+.assistance-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* pulsante copia */
+.btn-copy {
+    border: 1px solid #ced4da;
+    background: #f8f9fa;
+    color: var(--aqua-marine);
+    border-radius: 6px;
+    margin-left: 8px;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+.btn-copy:hover {
+    background: var(--aqua-marine);
+    color: white;
+    border-color: var(--aqua-marine);
+}
+
+/* numero di telefono in evidenza */
+.contact-highlight {
+    font-weight: 800;
+    color: var(--black-easy);
+    margin: 0 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .avatar-circle {
+        margin: 0 auto 15px auto !important;
+    }
+    .profile-header .btn {
+        margin-top: 15px;
+        width: 100%;
+    }
+}
