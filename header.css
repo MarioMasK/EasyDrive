@@ -1,0 +1,220 @@
+/* =========================================
+   1. RESET & VARIABILI
+   ========================================= */
+:root {
+    --primary-black: #000000;
+    --accent-aqua: #20B2AA;    /* Verde Acqua */
+    --accent-orange: #FF8C00;  /* Arancione */
+    --text-white: #ffffff;
+    --nav-height: 70px;        /* Altezza fissa header desktop */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* =========================================
+   2. HEADER CONTAINER
+   ========================================= */
+.main-header {
+    background-color: var(--primary-black);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0 20px;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.main-nav {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   3. NAVIGAZIONE DESKTOP (UL)
+   ========================================= */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Elementi della lista */
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Stile link e icone */
+.nav-item a {
+    text-decoration: none;
+    color: var(--accent-aqua);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: var(--accent-orange);
+}
+
+/* Gestione Icone Arrotondate */
+.icon-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.icon-link img {
+    width: 30px; /* Ridotto leggermente per bilanciare il logo */
+    height: 30px;
+    object-fit: contain;
+    border: 2px solid var(--text-white);
+    border-radius: 50%;
+    padding: 2px;
+    transition: all 0.3s ease;
+}
+
+.icon-link:hover img {
+    border-color: var(--accent-orange);
+    transform: scale(1.1);
+}
+
+/* =========================================
+   4. LOGO CENTRALE (DESKTOP)
+   ========================================= */
+.logo-desktop-item {
+    flex: 1; /* Prende lo spazio necessario per centrare */
+    display: flex;
+    justify-content: center;
+}
+
+.main-logo {
+    height: 40px; /* DIMENSIONE OTTIMALE: Non troppo grande, non troppo piccola */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.main-logo:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   5. POSIZIONAMENTO LATERALE
+   ========================================= */
+.nav-item.far-left { margin-right: 25px; }
+.nav-item.left { margin-right: auto; }
+
+/* Gruppo Destra */
+.nav-item.right { margin-left: auto; } /* Spinge tutto il gruppo a destra */
+.nav-item.nav-spacing { margin-left: 25px; } /* Spazio tra Storico e Profilo */
+.nav-item.far-right { margin-left: 25px; } /* Spazio per l'ultimo elemento */
+
+/* Pulsante Registrazione / Logout */
+.btn-registrazione {
+    background-color: var(--accent-orange);
+    color: var(--primary-black) !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 2px solid var(--accent-orange);
+    white-space: nowrap;
+}
+
+.btn-registrazione:hover {
+    background-color: transparent !important;
+    color: var(--accent-orange) !important;
+}
+
+/* Stile specifico per Logout */
+.btn-logout {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white !important;
+}
+
+.btn-logout:hover {
+    color: #dc3545 !important;
+    border-color: #dc3545;
+}
+
+/* =========================================
+   6. RESPONSIVE MOBILE (<= 768px)
+   ========================================= */
+.logo-mobile, #hamburgerBtn { display: none; }
+
+@media screen and (max-width: 768px) {
+    .main-header {
+        height: 60px;
+        justify-content: space-between;
+    }
+
+    .logo-desktop-item { display: none; }
+
+    .logo-mobile {
+        display: block;
+        height: 35px;
+    }
+    .logo-mobile img { height: 100%; }
+
+    #hamburgerBtn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 20px;
+        background: transparent;
+        border: none;
+    }
+
+    #hamburgerBtn span {
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent-aqua);
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* Menu a comparsa */
+    .main-nav ul {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary-black);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+    }
+
+    .main-nav ul.show {
+        max-height: 100vh;
+        border-bottom: 3px solid var(--accent-aqua);
+    }
+
+    .main-nav ul li {
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid #222;
+        justify-content: center;
+        margin: 0 !important;
+    }
+
+    .icon-link { flex-direction: row; gap: 10px; }
+}
