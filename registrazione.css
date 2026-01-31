@@ -1,0 +1,106 @@
+/* Variabili per coerenza cromatica */
+:root {
+    --primary-blue: #0d6efd;
+    --accent-purple: #6610f2;
+    --error-red: #c53030;
+}
+
+body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.reg-container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Card con effetto ombra e bordi arrotondati */
+.card-reg {
+    border: none;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+/* Sidebar decorativa */
+.reg-sidebar {
+    background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(102, 16, 242, 0.8)), 
+                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=600');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.section-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 5px;
+}
+
+/* Stilizzazione Input */
+.form-control {
+    border-radius: 12px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+}
+
+.input-group-text {
+    background-color: transparent;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #6c757d;
+}
+
+.has-icon .form-control {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+}
+
+/* Bottone Registrazione */
+.btn-register {
+    background: linear-gradient(45deg, var(--primary-blue), var(--accent-purple));
+    border: none;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(13, 110, 253, 0.3);
+    color: white;
+}
+
+/* Banner Errore Animato */
+.error-banner {
+    background-color: #fff5f5;
+    border-left: 5px solid var(--error-red);
+    color: var(--error-red);
+    font-weight: 600;
+    border-radius: 8px;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
