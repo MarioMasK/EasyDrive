@@ -1,0 +1,125 @@
+nome del trigger: AfterVenditaUpdate
+Tabella: Ordine_Vendita
+Tempo: After 
+Evento: Insert
+definizione:
+BEGIN
+    -- recupero lo stato precedente reale del veicolo (se esiste)
+    SELECT `stato` INTO @old_state FROM `Veicolo` WHERE `telaio` = NEW.`telaio`;
+
+    -- aggiorno lo stato del veicolo a 'Venduto'
+    UPDATE `Veicolo`
+    SET `stato` = 'Venduto'
+    WHERE `telaio` = NEW.`telaio`;
+
+    -- inserisco il log usando lo stato precedente reale (se null, 'Unknown')
+    INSERT INTO `Log_Disponibilita` (`telaio`, `stato_precedente`, `stato_nuovo`, `motivo`)
+    VALUES (NEW.`telaio`, COALESCE(@old_state,'Unknown'), 'Venduto', 'Vendita completata');
+END
+
+
+nome del trigger:AfterNoleggioInsert
+Tabella: Prenotazione_Noleggio
+Tempo: After
+Evento: Insert
+definizione:
+BEGIN
+    IF NEW.`stato_prenotazione` = 'Confermata' THEN
+
+        -- recupero stato precedente reale
+        SELECT `stato`
+        INTO @old_state
+        FROM `Veicolo`
+        WHERE `telaio` = NEW.`telaio`;
+
+        -- aggiorno veicolo
+        UPDATE `Veicolo`
+        SET `stato` = 'Noleggiato'
+        WHERE `telaio` = NEW.`telaio`;
+
+        -- log coerente
+        INSERT INTO `Log_Disponibilita`
+        (`telaio`, `stato_precedente`, `stato_nuovo`, `motivo`)
+        VALUES
+        (NEW.`telaio`, COALESCE(@old_state,'Unknown'), 'Noleggiato', 'Prenotazione confermata');
+
+    END IF;
+END
+
+
+
+nome del trigger: AfterNoleggioUpdate
+Tabella: Prenotazione_Noleggio
+Tempo: After
+Evento: Update 
+definizione:
+BEGIN
+    IF NEW.`stato_prenotazione` = 'Confermata'
+       AND OLD.`stato_prenotazione` <> 'Confermata' THEN
+
+        SELECT `stato`
+        INTO @old_state
+        FROM `Veicolo`
+        WHERE `telaio` = NEW.`telaio`;
+
+        UPDATE `Veicolo`
+        SET `stato` = 'Noleggiato'
+        WHERE `telaio` = NEW.`telaio`;
+
+        INSERT INTO `Log_Disponibilita`
+        (`telaio`, `stato_precedente`, `stato_nuovo`, `motivo`)
+        VALUES
+        (NEW.`telaio`, COALESCE(@old_state,'Unknown'), 'Noleggiato', 'Prenotazione confermata (update)');
+
+    END IF;
+END
+
+
+nome del trigger: bi_prenotazione_check_dates
+Tabella: Prenotazione_Noleggio
+Tempo: Before 
+Evento: Insert
+definizione:
+BEGIN
+    IF NEW.`data_fine` <= NEW.`data_inizio` THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'data_fine deve essere successiva a data_inizio';
+    END IF;
+END
+
+
+
+
+nome del trigger: bu_prenotazione_check_dates
+Tabella: Prenotazione_Noleggio
+Tempo: Before
+Evento: Update
+definizione:
+BEGIN
+    IF NEW.`data_fine` <= NEW.`data_inizio` THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'data_fine deve essere successiva a data_inizio';
+    END IF;
+END
+
+
+nome del trigger: bi_veicolo_check_anno
+Tabella: Veicolo
+Tempo: Before
+Evento: Insert
+definizione:
+BEGIN
+    IF NEW.`annoImmatricolazione` <= 1950 OR NEW.`annoImmatricolazione` > YEAR(CURDATE()) + 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'annoImmatricolazione non valido';
+    END IF;
+END
+
+
+nome del trigger: bu_veicolo_check_anno
+Tabella: Veicolo
+Tempo: Before
+Evento: Update
+definizione:
+BEGIN
+    IF NEW.`annoImmatricolazione` <= 1950 OR NEW.`annoImmatricolazione` > YEAR(CURDATE()) + 1 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'annoImmatricolazione non valido';
+    END IF;
+END
