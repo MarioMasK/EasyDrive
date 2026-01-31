@@ -1,0 +1,100 @@
+/* =========================================
+   1. VARIABILI E BACKGROUND
+   ========================================= */
+:root {
+    --primary-black: #000000;
+    --accent-aqua: #20B2AA;
+    --accent-orange: #FF8C00;
+    --bg-light: #f4f7f6;
+}
+
+body {
+    background-color: var(--bg-light);
+}
+
+/* =========================================
+   2. LAYOUT CARRELLO VUOTO (EMPTY STATE)
+   ========================================= */
+.empty-cart-card {
+    border: none;
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 60px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.empty-cart-icon {
+    font-size: 7rem;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-aqua) 0%, var(--accent-orange) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.btn-go-home {
+    background-color: var(--accent-orange);
+    color: #000;
+    border: none;
+    padding: 16px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-go-home:hover {
+    background-color: var(--primary-black);
+    color: var(--accent-orange);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+}
+
+/* =========================================
+   3. LISTA PRODOTTI E SIDEBAR
+   ========================================= */
+.cart-card {
+    border: none;
+    border-radius: 18px;
+    transition: transform 0.2s ease;
+}
+
+.cart-card:hover {
+    transform: translateX(5px);
+}
+
+.cart-img {
+    width: 140px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.checkout-sidebar {
+    position: sticky;
+    top: 100px;
+    border: none;
+    border-radius: 20px;
+}
+
+.btn-checkout {
+    background-color: var(--accent-aqua);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.btn-checkout:hover {
+    background-color: #1a948d;
+    filter: brightness(1.1);
+}
