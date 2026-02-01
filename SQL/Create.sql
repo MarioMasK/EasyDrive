@@ -4,8 +4,6 @@
 
 -- =============================================================================
 
-
-
 CREATE DATABASE IF NOT EXISTS `easydrive_db`
 
 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -324,8 +322,33 @@ WHERE v.`stato` = 'Disponibile';
 
 -- Vista Storico
 CREATE OR REPLACE VIEW `StoricoOperazioni` AS
-SELECT 'Vendita' AS `Tipo`, ov.`data_ordine` AS `Data`, ov.`prezzo_finale` AS `Importo`, ov.`username` AS `Cliente`
+SELECT 
+    'Vendita' AS `Tipo`, 
+    ov.`data_ordine` AS `Data`, 
+    ov.`prezzo_finale` AS `Importo`, 
+    ov.`username` AS `Cliente`,
+    v.`marca`, 
+    v.`modello`
 FROM `Ordine_Vendita` ov
+JOIN `Veicolo` v ON ov.`telaio` = v.`telaio`
 UNION ALL
-SELECT 'Noleggio' AS `Tipo`, pn.`data_creazione` AS `Data`, pn.`prezzo_stimato` AS `Importo`, pn.`username` AS `Cliente`
-FROM `Prenotazione_Noleggio` pn;
+SELECT 
+    'Noleggio' AS `Tipo`, 
+    pn.`data_creazione` AS `Data`, 
+    pn.`prezzo_stimato` AS `Importo`, 
+    pn.`username` AS `Cliente`,
+    v.`marca`, 
+    v.`modello`
+FROM `Prenotazione_Noleggio` pn
+JOIN `Veicolo` v ON pn.`telaio` = v.`telaio`;
+
+-- Dalla pagina localhost/phpmyadmin eseguire questo script SQL per creare l'accesso all'ingegnere
+-- Crea l'utente specifico per localhost
+CREATE USER IF NOT EXISTS 'ingegnere'@'localhost' IDENTIFIED BY 'ingegnere';
+
+-- Dai i permessi su questo database
+GRANT ALL PRIVILEGES ON `easydrive_db`.* TO 'ingegnere'@'localhost';
+
+-- Applica
+FLUSH PRIVILEGES;
+-- =============================================================================
