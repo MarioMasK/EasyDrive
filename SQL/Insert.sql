@@ -51,16 +51,16 @@ INSERT INTO `Immagine_Veicolo` (
 -- Immagine per Volkswagen Transporter
 ('https://www.dropbox.com/scl/fi/qxis91wgxtfe36gygixyr/Volkswagen.jpg?rlkey=ee6wn44r9knt8xu776ulv2x0v&st=x68znxbi&raw=1', 1, 'VWF00112233445566'),
 
-('https://www.dropbox.com/scl/fi/placeholder1/toyota_GR_supra.jpg?rlkey=key1&raw=1', 1, 'JT1SUPRA456789012'),
-('https://www.dropbox.com/scl/fi/placeholder2/porsche_cayanne.jpg?rlkey=key2&raw=1', 1, 'WP1CAYENNE9988776'),
-('https://www.dropbox.com/scl/fi/placeholder3/ferrari_purosangue.jpg?rlkey=key3&raw=1', 1, 'ZFFPUR0SANGU30102'),
-('https://www.dropbox.com/scl/fi/placeholder4/mercedes_class_A.jpg?rlkey=key4&raw=1', 1, 'WDD1770CLASS_A001'),
-('https://www.dropbox.com/scl/fi/placeholder5/BMW_iX.jpg?rlkey=key5&raw=1', 1, 'WBYIX3E0000123456'),
-('https://www.dropbox.com/scl/fi/placeholder6/land_rover_velar.jpg?rlkey=key6&raw=1', 1, 'SALRVVELAR5544332'),
-('https://www.dropbox.com/scl/fi/placeholder7/alfa_romeo_stelvio.jpg?rlkey=key7&raw=1', 1, 'ZAR123456STELVIO0'),
-('https://www.dropbox.com/scl/fi/placeholder8/alfa_romeo_giulia_quadrifoglio.jpg?rlkey=key8&raw=1', 1, 'ZAR987654GIULIA00'),
-('https://www.dropbox.com/scl/fi/placeholder9/renault_clio.jpg?rlkey=key9&raw=1', 1, 'VF1CLIO2023004000'),
-('https://www.dropbox.com/scl/fi/placeholder10/peugeot_308_sw.jpg?rlkey=key10&raw=1', 1, 'VR3308SW000099887');
+('https://www.dropbox.com/scl/fi/8us2d77ozkf0ztjytqp28/toyota-GR-supra.jpg?rlkey=jj0osrd264jd75bhnjy1945s2&st=kn4db6ic&raw=1', 1, 'JT1SUPRA456789012'),
+('https://www.dropbox.com/scl/fi/nxdtlmdjngowhg29y6job/porsche-cayanne.jpg?rlkey=anpcqp8ju3ny5wtdv2cmone5t&st=e0zz9xep&raw=1', 1, 'WP1CAYENNE9988776'),
+('https://www.dropbox.com/scl/fi/eu57o9b5b1f2av011ul43/ferrari-purosangue.jpg?rlkey=7zbwkzo0krtoeqqotk5yh4f6u&st=5h2qj1zx&raw=1', 1, 'ZFFPUR0SANGU30102'),
+('https://www.dropbox.com/scl/fi/3a8rl9yao7ddddeb93ypl/mercedes-class-A.jpg?rlkey=yjpog34mrvj8qih38r79kcmwq&st=diuens0n&raw=1', 1, 'WDD1770CLASS_A001'),
+('https://www.dropbox.com/scl/fi/d14djggpoe9qo1jg325tx/BMW-iX.jpg?rlkey=8o7z8nmvisz85e8htn7aj3lxg&st=j7jko99i&raw=1', 1, 'WBYIX3E0000123456'),
+('https://www.dropbox.com/scl/fi/c470x7igpufu20ifpzipx/land-rover-velar.jpg?rlkey=liy7aoct2v8vaxbdvmmrpzl0k&st=c9w5fmkw&raw=1', 1, 'SALRVVELAR5544332'),
+('https://www.dropbox.com/scl/fi/lzb5v5f5b45qeca03g0kq/alfa-romeo-stelvio.jpg?rlkey=22jch0m9iuzbxoh9j4lslb5o1&st=7772psou&raw=1', 1, 'ZAR123456STELVIO0'),
+('https://www.dropbox.com/scl/fi/zs84v5f7vpu563gzdwbuu/alfa-romeo-giulia-quadrifoglio.jpg?rlkey=n4ug376xxpmzdwke2esn9nwxp&st=criqejif&raw=1', 1, 'ZAR987654GIULIA00'),
+('https://www.dropbox.com/scl/fi/gesgcxxuy51jb6ermvlfd/renault-clio.jpg?rlkey=kfi0qfguy6qgcpeq96nrk6ibj&st=g4yw2pi5&raw=1', 1, 'VF1CLIO2023004000'),
+('https://www.dropbox.com/scl/fi/bgtna4szgmxwbragd7sd4/peugeot-308-sw.jpg?rlkey=0i288f4knsym64ycqyyrqsso2&st=yr63fkz1&raw=1', 1, 'VR3308SW000099887');
 
 -- Inserimento delle icone di sistema
 INSERT INTO icone (nome_icona, url_icona, descrizione) VALUES 
