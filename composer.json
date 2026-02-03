@@ -1,0 +1,9 @@
+{
+    "name": "utente/easy-drive",
+    "autoload": {
+        "psr-4": {
+            "Utente\\EasyDrive\\": "src/"
+        }
+    },
+    "require": {}
+}

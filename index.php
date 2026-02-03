@@ -1,5 +1,17 @@
 <?php 
-require_once 'connessione.php'; 
+// Inclusione dei componenti dell'architettura Three-Tier
+require_once 'core/Database.php';
+require_once 'catalog/CatalogDAO.php';
+require_once 'catalog/CatalogLogic.php';
+
+// Far partire la sessione per i messaggi e il login
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Inizializzazione della logica di business
+$catalogLogic = new \it\unisa\easydrive\catalog\CatalogLogic();
+$risultato = $catalogLogic->getHomePageHighlights();
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +62,6 @@ require_once 'connessione.php';
 
         <div class="row">
             <?php 
-            $sql = "SELECT v.*, i.url_immagine 
-                    FROM Veicolo v 
-                    LEFT JOIN Immagine_Veicolo i ON v.telaio = i.telaio_veicolo 
-                    WHERE v.stato = 'Disponibile' AND (i.is_principale = 1 OR i.is_principale IS NULL)
-                    LIMIT 4"; 
-            $risultato = $conn->query($sql);
-
             if ($risultato && $risultato->num_rows > 0): 
                 while($v = $risultato->fetch_assoc()): 
                     $marca = htmlspecialchars($v['marca']);
@@ -88,7 +93,7 @@ require_once 'connessione.php';
                                         <div><span class="d-block text-muted small">Acquisto</span><span class="h6 fw-bold text-dark">€<?php echo number_format($v['prezzoVendita'], 2, ',', '.'); ?></span></div>
                                         <div class="text-end border-start ps-3"><span class="d-block text-muted small">Noleggio</span><span class="h6 fw-bold text-primary">€<?php echo number_format($v['tariffaNoleggioGiorno'], 2, ',', '.'); ?>/gg</span></div>
                                     </div>
-                                    <a href="dettaglio_veicolo.php?id=<?php echo $v['telaio']; ?>" class="btn btn-outline-dark w-100 btn-sm fw-bold">Dettagli</a>
+                                    <a href="catalog/dettaglio_veicolo.php?id=<?php echo $v['telaio']; ?>" class="btn btn-outline-dark w-100 btn-sm fw-bold">Dettagli</a>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +108,7 @@ require_once 'connessione.php';
         </div>
     </main>
 
-    <?php include 'footer.html'; ?>
+    <?php include 'footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="header.js"></script> 
 </body>
